@@ -55,6 +55,12 @@ class ProductsController < ApplicationController
     redirect_to products_path, notice: "Produto removido com sucesso."
   end
 
+  def remove_image
+    image = @product.images.find(params[:image_id])
+    image.purge
+    redirect_back fallback_location: edit_product_path(@product), notice: "Imagem removida com sucesso."
+  end
+
   private
 
   def set_product

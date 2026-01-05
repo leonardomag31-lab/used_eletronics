@@ -1,19 +1,45 @@
-<%= form_with model: product, html: { multipart: true } do |f| %>
+<%= form_with model: product, local: true, html: { multipart: true } do |f| %>
+  <div class="mb-3">
+    <%= f.label :title %>
+    <%= f.text_field :title, class: "form-control" %>
+  </div>
 
-  <%= f.label :title %>
-  <%= f.text_field :title %>
+  <div class="mb-3">
+    <%= f.label :description %>
+    <%= f.text_area :description, class: "form-control" %>
+  </div>
 
-  <%= f.label :description %>
-  <%= f.text_area :description %>
+  <div class="mb-3">
+    <%= f.label :price %>
+    <%= f.number_field :price, step: 0.01, class: "form-control" %>
+  </div>
 
-  <%= f.label :price %>
-  <%= f.number_field :price, step: 0.01 %>
+  <div class="mb-3">
+    <%= f.label :condition %>
+    <%= f.select :condition, ["Novo", "Usado - bom", "Usado - regular"], {}, class: "form-select" %>
+  </div>
 
-  <%= f.label :condition %>
-  <%= f.select :condition, ["Novo", "Usado - bom", "Usado - regular"] %>
+  <div class="mb-3">
+    <%= f.label :images, "Adicionar imagens" %>
+    <%= f.file_field :images, multiple: true, class: "form-control" %>
+  </div>
 
-  <%= f.label :images, "Imagens do produto" %>
-  <%= f.file_field :images, multiple: true %>
+  <% if product.images.attached? %>
+  <div class="row mb-3">
+    <% product.images.each do |image| %>
+      <div class="col-3 position-relative mb-2">
+        <%= image_tag image.variant(resize_to_limit: [150, 150]), class: "img-thumbnail" %>
 
-  <%= f.submit %>
+        <%= link_to "×",
+                    remove_image_product_path(product, image_id: image.id),
+                    method: :delete,
+                    data: { confirm: "Remover imagem?" },
+                    class: "position-absolute top-0 end-0 btn btn-sm btn-danger" %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+
+  <%= f.submit class: "btn btn-primary" %>
 <% end %>

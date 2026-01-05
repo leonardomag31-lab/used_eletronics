@@ -7,5 +7,9 @@ Rails.application.routes.draw do
     collection do
       get :my
     end
+
+    member do
+      delete :remove_image
+    end
   end
 end

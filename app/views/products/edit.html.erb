@@ -1,13 +1,2 @@
-<!-- edit.html.erb -->
 <h1>Editar Produto</h1>
 <%= render "form", product: @product %>
-
-<%= form_with model: @product, local: true do |f| %>
-  <%= f.label :title %>
-  <%= f.text_field :title %>
-
-  <%= f.label :images %>
-  <%= f.file_field :images, multiple: true %>
-
-  <%= f.submit "Salvar" %>
-<% end %>
