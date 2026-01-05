@@ -1,0 +1,19 @@
+<!-- app/views/products/index.html.erb -->
+<h1>Produtos</h1>
+
+<%= link_to "Novo produto", new_product_path if user_signed_in? %>
+
+<ul>
+  <% @products.each do |product| %>
+    <li>
+      <% if product.images.attached? %>
+        <%= image_tag product.images.first.variant(resize_to_limit: [150, 150]),
+                      alt: product.title,
+                      style: "display:block; margin-bottom: 8px;" %>
+      <% end %>
+
+      <%= link_to product.title, product %>
+      - R$ <%= number_to_currency(product.price, unit: "", separator: ",", delimiter: ".") %>
+    </li>
+  <% end %>
+</ul>

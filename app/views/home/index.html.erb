@@ -1,0 +1,13 @@
+<!-- app/views/products/index.html.erb -->
+<h1>Produtos</h1>
+
+<%= link_to "Novo produto", new_product_path if user_signed_in? %>
+
+<ul>
+  <% @products.each do |product| %>
+    <li>
+      <%= link_to product.title, product %>
+      - R$ <%= product.price %>
+    </li>
+  <% end %>
+</ul>
