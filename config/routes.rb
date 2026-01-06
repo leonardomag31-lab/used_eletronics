@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     end
 
     member do
-      delete :remove_image
+      delete "images/:image_id", to: "products#remove_image", as: :remove_image
     end
   end
 end

@@ -30,11 +30,13 @@
       <div class="col-3 position-relative mb-2">
         <%= image_tag image.variant(resize_to_limit: [150, 150]), class: "img-thumbnail" %>
 
-        <%= link_to "×",
-                    remove_image_product_path(product, image_id: image.id),
-                    method: :delete,
-                    data: { confirm: "Remover imagem?" },
-                    class: "position-absolute top-0 end-0 btn btn-sm btn-danger" %>
+        <%= button_to "×",
+              remove_image_product_path(@product, image.id),
+              method: :delete,
+              data: { turbo_confirm: "Remover imagem?" },
+              class: "position-absolute top-0 end-0 btn btn-sm btn-danger",
+              form_class: "d-inline" %>
+
         </div>
       <% end %>
     </div>

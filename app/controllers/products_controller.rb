@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:index, :show]
+  skip_before_action :authenticate_user!, only: [ :index, :show ]
   before_action :set_product, only: %i[show edit update destroy]
   before_action :authorize_user!, only: %i[edit update destroy]
 

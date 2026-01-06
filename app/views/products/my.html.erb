@@ -21,12 +21,11 @@
 
           <%= link_to "Editar", edit_product_path(product), class: "me-2" %>
 
-          <%= link_to "Excluir",
-                      product,
-                      data: {
-                        turbo_method: :delete,
-                        turbo_confirm: "Tem certeza?"
-                      } %>
+          <%= button_to "Remover imagem",
+                remove_image_product_path(@product, image.id),
+                method: :delete,
+                data: { turbo_confirm: "Tem certeza?" },
+                class: "btn btn-danger btn-sm" %>
         </div>
 
       </li>
